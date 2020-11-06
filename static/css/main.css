@@ -1,0 +1,386 @@
+input:invalid, select:invalid{
+box-shadow: 0 0 3px 2px red; color:red;
+}
+
+
+#logo {
+  position: relative;
+  z-index: 2;
+  font-size: 28px;
+  text-transform: uppercase;
+  margin-top: 35px;
+  font-weight: 700;
+  float: left;
+  padding-left: 40px;
+}
+#logo i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 15px;
+  width: 520px;
+  display: block;
+  font-size: 25px;
+  color: rgb(56, 181, 253);
+  background: rgba(0, 0, 0, 0.06);
+  padding: 8px 10px 10px 50px;
+  font-size: 11px !important;
+  
+}
+#logo a {
+  color: orangered;
+}
+#logo a:hover, #logo a:focus {
+  color: #C8EEFD !important;;
+}
+
+#logo a img{
+  width: 120px;
+  margin-top: -27px;
+}
+
+
+
+.nav-toggle {
+  cursor: pointer;
+  text-decoration: none;
+}
+.nav-toggle.active i::before, .nav-toggle.active i::after {
+  background: #fff;
+}
+.nav-toggle.dark.active i::before, .nav-toggle.dark.active i::after {
+  background: #fff;
+}
+
+.nav-toggle:hover, .nav-toggle:focus, .nav-toggle:active {
+  outline: none;
+  border-bottom: none !important;
+}
+.nav-toggle i {
+  position: relative;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 30px;
+  height: 2px;
+  color: #fff;
+  font: bold 14px/.4 Helvetica;
+  text-transform: uppercase;
+  text-indent: -55px;
+  background: #fff;
+  transition: all .2s ease-out;
+}
+.nav-toggle i::before, .nav-toggle i::after {
+  content: '';
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+.nav-toggle.dark i {
+  position: relative;
+  color: #000;
+  background: orangered;
+  transition: all .2s ease-out;
+}
+.nav-toggle.dark i::before, .nav-toggle.dark i::after {
+  background: orangered;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.nav-toggle i::before {
+  top: -7px;
+}
+
+.nav-toggle i::after {
+  bottom: -7px;
+}
+
+.nav-toggle:hover i::before {
+  top: -10px;
+}
+
+.nav-toggle:hover i::after {
+  bottom: -10px;
+}
+
+.nav-toggle.active i {
+  background: transparent;
+}
+
+.nav-toggle.active i::before {
+  top: 0;
+  -webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
+  -ms-transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+
+.nav-toggle.active i::after {
+  bottom: 0;
+  -webkit-transform: rotateZ(-45deg);
+  -moz-transform: rotateZ(-45deg);
+  -ms-transform: rotateZ(-45deg);
+  -o-transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);
+}
+
+.nav-toggle {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 9999;
+  display: block;
+  margin: 0 auto;
+  display: none;
+  cursor: pointer;
+}
+@media screen and (max-width: 990px) {
+  .nav-toggle {
+    display: block;
+    top: 0px;
+    margin-top: 2em;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .nav-toggle {
+    display: block;
+    top: 0px;
+    margin-top: 2em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    top: 0px;
+    margin-top: 2em;
+  }
+}
+#user-icon, #author {
+  border-radius:100%;
+  width:40px!important;
+  height: 40px!important;
+  margin-top: -10px;
+}
+
+/* #user-icon-a{
+  overflow: hidden;
+  height: 40px!important;
+  width:40px!important;
+} */
+
+#author{
+	margin-left: 10px;
+}
+
+#header-panel{
+	margin-top: 10px;
+	padding: 10px;
+	
+}
+
+#hh-panel{
+	margin-top: -55px;
+	margin-bottom: 10px;
+	padding: 0px;
+	background-color: #0ab0f1 !important;
+	border-radius: 5px;
+}
+
+#hh-panel .hh-panel-d a p{
+	border-radius: 5px;
+	margin: -20px;
+	padding: -20px;
+}
+
+#hh-panel .hh-panel-d a {
+	text-align: center;
+	padding: -20px;
+	margin: 0px;
+	font-size: 50px;
+	color:white;
+	font-family: 'Times New Roman', serif, Cambria, Cochin, Georgia, Times;
+	font-weight: bold;
+}
+
+#body-content{
+	margin-top: 10px;
+}
+
+#data-panel{
+	border: 5px solid #C8EEFD !important;
+	background-color:#C8EEFD !important;
+	border-radius: 10px;
+	/*background-color: #7ddaff;*/
+}
+
+#results-panel{
+	background-color: white;
+	padding-top: 10px;
+	border-radius: 10px;
+}
+
+#results-header{
+	background-color: #C8EEFD !important;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	padding: 0px;
+}
+
+#results-header input{
+	margin: -10px 0px -10px 0px;
+	padding: 5px;
+	height: 35px;
+	font-weight: bold;
+}
+
+.mt {
+  margin: 0px 0px 5px 0px;
+	padding: 5px;
+}
+
+#results-body {
+  max-height: 450px;
+  overflow-y: auto;
+  padding-top: 20px;
+  border-radius: 10px;
+}
+
+blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #C8EEFD !important;;
+  border-right: 5px solid #C8EEFD !important;;
+  background-color: aliceblue;
+  
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  background-color:rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(114, 164, 255);
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
+  color: blue;
+  font-weight: bold;
+}
+
+
+
+
+input[type="radio"],
+input[type="checkbox"] {
+  zoom: 1.6;
+  border: 1px solid rgb(114, 164, 255);
+  font-size: 18px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.05);;
+  -webkit-appearance: none;
+}
+
+
+input[type="radio"]{
+  border-radius: 100%;
+}
+
+input[type=radio]:checked,
+input[type=checkbox]:checked {
+  background-color: blue;
+  color: blue;
+}
+
+
+.radio-boutton {
+  margin-top: 10px;
+}
+
+.radio-boutton label {
+  color: #054863 !important;
+}
+
+.tab-content {
+  padding: 30px 30px 0px 30px;
+}
+
+
+
+.display_none{
+	display: none;
+}
+
+
+
+
+
+/* ############################################################################## */
+
+#id_sex,
+#id_ac_nc,
+#id_pf_administered_yes_or_no,
+#id_reference,
+#id_counciling,
+#id_care_or_follow_up,
+#id_reference,
+#id_reference,
+#id_promptness {
+  padding: 0
+}
+
+#id_care_or_follow_up_1,
+#id_care_or_follow_up_2,
+#id_care_or_follow_up_3 {
+  margin-left: -5px;
+}
+
+#id_sex li,
+#id_ac_nc li {
+  list-style: none;
+}
+
+#id_pf_administered_yes_or_no li,
+#id_reference li,
+#id_counciling li,
+#id_care_or_follow_up li,
+#id_reference li,
+#id_reference li,
+#id_promptness li {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 768px) {
+
+  #id_pf_administered_yes_or_no li,
+  #id_reference li,
+  #id_counciling li,
+  #id_care_or_follow_up li,
+  #id_reference li,
+  #id_reference li {
+    display: block;
+    margin-right: 0px;
+  }
+  #id_care_or_follow_up_1,
+  #id_care_or_follow_up_2 {
+    margin-left: 1px;
+  }
+
+  #results-panel{
+    margin-top: 20px;
+  }
+
+
+}

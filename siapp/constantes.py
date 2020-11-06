@@ -1,0 +1,9 @@
+"""
+All CONSTANTES
+"""
+
+START_DATE = "2019-12-23"
+END_DATE = "2020-12-25"
+
+DATA_FIND_LIMIT = '[0:10]'
+

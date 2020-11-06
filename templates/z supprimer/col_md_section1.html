@@ -1,0 +1,100 @@
+
+												<div class="col-md-4 col-xs-4">
+
+													<label style="margin-top:-15px" class="l1" for="">District<span class="text-danger">*</span>
+														<select id="district" onChange="" type="select" class="my-form-control" name="district" required="required">
+															<option class="option em" selected hidden value=""></option>
+															<option class="option" value="1">KOZAH</option>
+															<option class="option" value="2">BASSAR</option>
+															<option class="option" value="3">DANKPEN</option>
+
+														</select>
+													</label>
+
+													<label class="l1" for="">Site <span class="text-danger">*</span>
+														<select id="site" onChange=""
+															required="required" class="my-form-control" type="select"
+															name="site">
+															<option class="option" selected hidden value=""></option>
+															<option class="option" value="1">ADABAWERE</option>
+															<option class="option" value="2">SARAKAWA</option>
+															<option class="option" value="3">DJAMDE</option>
+															<option class="option" value="4">KPINDI</option>
+														</select>
+													</label>
+
+
+													<label class="l1" for="">Code ASC <span class="text-danger">*</span>
+														<select id="asc" type="select" required="required"
+															class="my-form-control" name="chws_code">
+															<option class="option" selected hidden value=""></option>
+															<option class="option" value="1">ASC_1</option>
+															<option class="option" value="2">ASC_2</option>;
+															<option class="option" value="3">ASC_3</option>;
+															<option class="option" value="4">ASC_4</option>;
+
+														</select>
+													</label>
+
+													<label class="l1" for="">Date <span class="text-danger">*</span>
+														<input id="date" class="my-form-control" required="required"
+															type="date" name="date" value="">
+													</label>
+
+
+													<label class="l1" for="">Type de Visite<span class="text-danger">*</span>
+														<select type="select" required="required" class="my-form-control" name="visit_type" id="visit_type" onchange="getTypeofvisit();">
+															<option class="option" selected hidden value=""></option>
+															<option class="option" value=""></option>
+															<option class="option" value="1">PCIME</option>
+															<option class="option" value="2">Maternelle</option>
+															<option class="option" value="3">PF</option>
+															<option class="option" value="4">Recherche</option>
+
+														</select>
+													</label>
+
+													<div class="row">
+														<div class="col-md-1 col-xs-1"></div>
+														<fieldset class="fieldset_1 col-md-3 display_none"
+															id="label_sex" for="">
+															<legend>Sexe <span class="text-danger">*</span></legend>
+															<div class="">
+																<input type="radio" id="sexe_M" name="sexe" value="M">
+																<label for="sexe_M">M</label><br>
+
+																<input type="radio" id="sexe_F" name="sexe" value="F">
+																<label for="sexe_F">F</label><br>
+
+																<input style="margin-top:10px" type="radio" id="sexe_N"
+																	name="sexe" value="NR"> <label
+																	class="text-danger lab"
+																	for="sexe_N"><strong>NR</strong></label>
+															</div>
+														</fieldset>
+
+														<div class="col-md-1 col-xs-1"></div>
+
+														<fieldset class="fieldset_1 col-md-3 display_none"
+															id="label_ac_nc" for="">
+															<legend>NC/AC <span class="text-danger">*</span>
+															</legend>
+
+															<div class="">
+																<label for="ac">
+																	<input type="radio" id="ac" name="ac_nc" value="AC">
+																	AC </label><br>
+
+																<label for="nc">
+																	<input type="radio" id="nc" name="ac_nc" value="NC">
+																	NC</label><br>
+
+																<label class="text-danger lab" for="nr">
+																	<input style="margin-top:10px" type="radio" id="nr"
+																		name="ac_nc" value="NR">
+																	<strong>NR</strong></label>
+															</div>
+														</fieldset>
+														<div class="col-md-1"></div>
+													</div>
+												</div>

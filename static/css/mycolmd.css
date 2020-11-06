@@ -1,0 +1,223 @@
+.mycolmd-3{
+  position: relative;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+@media (min-width: 992px) {
+  .mycolmd-3 {
+    float: left;
+  }
+
+
+  .mycolmd-3 {
+	width: 25%;
+  }
+
+
+
+}
+
+
+
+.my-form-control{
+  display:block;
+  border:solid 1px #ccc;
+	border-radius: 5px;
+	width:185px;
+	margin-bottom:0px;
+	height:35px;
+  padding: 2px;
+  zoom:1.0;
+  font-size:20px;
+
+}
+
+
+.my-form-control-0{
+  display:block;
+  border:solid 1px #ccc;
+	border-radius: 5px;
+	width:185px;
+	margin-bottom:2px;
+	height:35px;
+  padding: 7px 2px 2px 5px;
+  zoom:1.0;
+  font-size:16px;
+
+}
+
+
+.my-form-control-0 input{
+  zoom:1.2;
+}
+
+.my-form-control-0 .lab{
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+
+abbr{
+  margin: 1px 0px 0px 2px;
+  font-size: 14px;
+}
+
+.my-form-control-1{
+  border:solid 1px #ccc;
+	border-radius: 5px;
+  text-align: center;
+	width:50px;
+  margin-right:0px;
+	margin-bottom:2px;
+	height:35px;
+  padding: 2px;
+  font-size: 18px;
+}
+
+.my-form-control-11{
+  border:solid 1px #ccc;
+	border-radius: 5px;
+  text-align: center;
+	width:45px;
+  margin-right:0px;
+	margin-bottom:2px;
+	height:35px;
+  padding: 2px;
+  font-size: 18px;
+}
+
+.my-form-control-2{
+  display:block;
+}
+
+
+@media all and (max-width: 1024px)
+{
+      .mm{
+        font-size: 13px;
+      }
+
+	    
+#all_motif_consultation abbr{
+	font-size: 10px;
+	display: inline-block;
+}
+      .my-form-control, .my-form-control-0
+      {
+      	width:125px;
+        font-size:13px;
+
+        display:block;
+        border:solid 1px #ccc;
+      	border-radius: 5px;
+      	margin-bottom:0px;
+      	height:30px;
+        padding: 2px;
+        zoom:1.0;
+      }
+
+      .my-form-control-0 input{
+        zoom:1.0;
+        margin-left: -2px;
+	  }   
+
+
+          #save_while_value{
+           width:auto;
+           height: 30px;
+		   font-size:20px;
+		   width: 100%;
+          }
+
+          #titre_saisie{
+            font-size:10px;
+          }
+	
+	}
+
+
+.fieldset{
+  padding:0px 0px 0px 3px;
+  border:solid 1px #ccc;
+  display:block;
+  width:auto;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+border-radius: 5px;
+}
+
+
+.fieldset_1{
+  padding:0px 0px 0px 3px;
+  border:solid 1px #ccc;
+}
+
+.motif-label{
+	display:block;
+}
+
+
+.l0{
+  font-size: 12px;
+  width: auto;
+}
+
+.l1{
+  font-size: 12px;
+  width: auto;	
+}
+
+
+.l4{
+  display:block;
+  margin:0px;
+  background-color: yellow !important;
+  padding: 2px;
+  width: 120px;
+  font-size:14px;
+  margin:0px 0px 10px 10px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.l4:hover{
+  background-color: blue !important;
+  color: white !important;
+  display:block !important;
+  position: static;
+  border-radius: 10px;
+}
+
+.l4 strong{
+  display:block;
+  font-size:18px;
+}
+
+legend{
+  font-size:12px;
+  width: auto;
+  font-weight: bold;
+}
+
+
+.l2{
+  display:block;
+}
+
+.b2{
+  margin: 20px;
+}
+
+.b2 fieldset{
+  display:block;
+  margin-bottom: 15px;
+  border:solid 1px black;
+}
+
+
+
+.l3{
+  margin:0px 5px 0px 5px;
+}

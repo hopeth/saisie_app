@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+			<div id="header-panel" class=""></div>
+
+				<div class="col-sm-8 col-md-8">
+					<div class="row">
+						<div class="col-sm-12 col-md-12">
+							<div id="data-panel" class="tabulation animate-box">
+								<div class="tab-content">
+
+									<div class="row">
+										<div class="col-md-12 col-xs-12 mt">
+											<div id="hh-panel" class="animate-box">
+												<div class="row">
+													<div class="hh-panel-d col-md-6 col-xs-6">
+														<a href="#">
+															<p>ASC</p>
+														</a>
+													</div>
+
+
+													<div class="hh-panel-d col-md-6 col-xs-6">
+														<a href="#">
+															<p>USP</p>
+														</a>
+													</div>
+
+												</div>
+											</div>
+										</div>
+
+										<form id="form_1" data-parsley-validate class="" action="" method="post"
+											onload="document.getElementById('age').style.display = 'block'">
+												{% csrf_token %} 
+											<div style="margin-bottom: -20px;" class="row">
+											
+											{% include 'DataLayouts/col_md_section1.html' %}
+
+											{% include 'DataLayouts/col_md_section2.html' %}
+
+											{% include 'DataLayouts/col_md_section3.html' %}
+
+											</div>
+
+											<div class="col-md-12 col-xs-12">
+												<div class="row">
+												<div class="col-md-7 col-xs-4"></div>
+													<div class="col-md-5 col-xs-8">
+														<a style="margin-left:10px; float:right" class="btn btn-danger pull-right"
+															href="">Annuler</a>
+														<input class="btn btn-success pull-right" type="submit"
+															name="submit_asc_data" value="Valider la Saisie">
+													</div>
+												</div>
+											</div>
+										</form>
+										<!--
+											<input class="btn btn-warning pull-right" type="submit"
+												name="submit_asc_data" value="Modifier la Saisie">-->
+
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				{% include 'DataLayouts/ChwsResultsData.html' %}
+				
+
+
+		
+
+{% endblock content %}

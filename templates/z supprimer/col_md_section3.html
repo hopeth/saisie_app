@@ -1,0 +1,263 @@
+
+												<div class="col-md-4 col-xs-4">
+													<label style="margin-top:-15px" class="l1 display_none"
+														id="label_pregnant_or_postpartum" style="margin-bottom:10px"
+														for="pregnant_or_postpartum">Enceinte ou post-Partum
+														<select type="select" name="pregnant_or_postpartum"
+															id="pregnant_or_postpartum" class="my-form-control"
+															onchange="getEnceinteOuPostpartum()" value="">
+
+															<option class="option" selected hidden value=""></option>
+															<option class="option" value=""></option>
+															<option class="option" value="1">Enceinte</option>
+															<option class="option" value="2">Postpartum</option>
+														</select>
+													</label>
+
+
+													<fieldset class="display_none" onchange="getPfAdministree()" id="pf_administree_oui_ou_non">
+														<legend class="l1">PF Administré ? <span
+																class="text-danger">*</span> </legend>
+														<div class="row">
+															<div class="col-md-4">
+																<input id="pf_administree_oui" type="radio"
+																	name="pf_administered_yes_or_no" value="1"><label
+																	for="pf_administree_oui">Oui</label>
+															</div>
+															<div class="col-md-4">
+																<input id="pf_administree_non" type="radio"
+																	name="pf_administered_yes_or_no" value="2"><label
+																	for="pf_administree_non">Non</label>
+															</div>
+															<div class="col-md-4">
+																<input id="pf_administree_nr" type="radio"
+																	name="pf_administered_yes_or_no" value="NR"><label
+																	class="text-danger lab"
+																	for="pf_administree_nr">NR</label>
+															</div>
+														</div>
+													</fieldset>
+
+
+
+													<label class="l1 display_none" id="label_pf_administree" for="">PF
+														Administré
+														<span class="text-danger">*</span>
+														<select type="select" name="pf_administree" id="pf_administree"
+															class="my-form-control" value="">
+															<option class="option" selected hidden value=""></option>
+															<option class="option" value=""></option>
+															<optgroup label="Méthode PF">
+																<option class="option" value="1">Depo Provera</option>
+																<option class="option" value="2">Confiance</option>
+																<option class="option" value="3">Sayana Press</option>
+																<option class="option" value="9">Autres Méthodes
+																</option>
+															</optgroup>
+														</select>
+													</label>
+
+
+													<label class="l1 display_none" id="label_pf_non_administre"
+														for="">PF
+														Non
+														Administré <span class="text-danger">*</span>
+
+														<select type="select" name="pf_non_administree"
+															id="pf_non_administree" class="my-form-control" value=""
+															onchange="getPfNonAdministree()">
+															<option class="option" selected hidden value=""></option>
+															<option class="option" value=""></option>
+
+															<optgroup label="Raisons">
+																<option class="option" value="10">Refus</option>
+																<option class="option" value="11">Veut réfléchir
+																</option>
+																<option class="option" value="12">Autres Raisons
+																</option>
+																<option class="option" value="13">Suivi PF</option>
+															</optgroup>
+														</select>
+													</label>
+
+													<div id="les_autres_motifs" class="display_none">
+														<fieldset id="les_autres_motifs_2"
+															class="fieldset display_none">
+															<legend style="font-size:12px; width:auto">Autres Eléments</legend>
+
+															<label class="" id="label_pregnancy_test"
+																for="pregnancy_test">
+																<input id="pregnancy_test" type="checkbox"
+																	name="pregnancy_test" value="1">
+																<abbr class="motif">Test de Grossesse</abbr>
+															</label>
+
+															<label class="motif-label" id="label_ptme" for="ptme">
+																<input id="ptme" type="checkbox" name="ptme" value="1">
+																<abbr class="motif">PTME</abbr>
+															</label>
+
+														</fieldset>
+
+														<fieldset class="fieldset display_none" id="label_counciling">
+															<legend class="l1">Counciling</legend>
+															<div class="row">
+																<div class="col-md-4">
+																	<input id="counciling_true" type="radio"
+																		name="counciling" value="1"><label
+																		for="counciling_true"> Oui</label>
+																</div>
+																<div class="col-md-4">
+																	<input id="counciling_false" type="radio"
+																		name="counciling" value="2"><label
+																		for="counciling_false"> Non</label>
+																</div>
+																<div class="col-md-4">
+																	<input id="counciling_NR" type="radio"
+																		name="counciling" value="NR"><label
+																		class="text-danger lab"
+																		for="counciling_NR">NR</label>
+																</div>
+															</div>
+														</fieldset>
+
+														<fieldset class="fieldset display_none" id="label_reference">
+															<legend class="l1">Référé PF</legend>
+															<div class="row">
+																<div class="col-md-4">
+																	<input id="refere_pour_pf_true" type="radio"
+																		name="refere_pour_pf" value="1"><label
+																		for="refere_pour_pf_true">
+																		Oui</label>
+
+																</div>
+
+																<div class="col-md-4">
+																	<input id="refere_pour_pf_false" type="radio"
+																		name="refere_pour_pf" value="2"><label
+																		for="refere_pour_pf_false">
+																		Non</label>
+
+																</div>
+
+																<div class="col-md-4">
+																	<input id="refere_pour_pf_NR" type="radio"
+																		name="refere_pour_pf" value="NR"><label
+																		class="text-danger lab" for="refere_pour_pf_NR">
+																		NR</label>
+																</div>
+															</div>
+
+
+														</fieldset>
+
+													</div>
+
+													<fieldset class="fieldset_1 display_none"
+														id="label_reference">
+														<legend class="l1">Référé ASC <span class="text-danger">*</span>
+														</legend>
+														<div class="row">
+															<div class="col-md-4">
+																<input id="refere_par_un_asc_true" type="radio"
+																	name="refere_par_un_asc" value="1"><label
+																	for="refere_par_un_asc_true">
+																	Oui</label>
+															</div>
+
+															<div class="col-md-4">
+																<input id="refere_par_un_asc_false" type="radio"
+																	name="refere_par_un_asc" value="2"><label
+																	for="refere_par_un_asc_false">
+																	Non</label>
+															</div>
+
+															<div class="col-md-4">
+																<input id="refere_par_un_asc_NR" type="radio"
+																	name="refere_par_un_asc" value="NR"><label
+																	class="text-danger lab" for="refere_par_un_asc_NR">
+																	NR</label>
+															</div>
+														</div>
+													</fieldset>
+
+
+													<fieldset style="margin-top:10px;" class="fieldset_1 display_none"
+														id="label_care_or_follow_up">
+														<legend>Soins ou Suivi <span class="text-danger">*</span>
+														</legend>
+														<div class="row">
+															<div class="col-md-4">
+																<input type="radio" onchange="getSoinsOuSuivi()"
+																	id="soins" name="care_or_follow_up" value="1">
+																<label for="soins"> Soins</label>
+															</div>
+															<div class="col-md-4">
+																<input type="radio" onchange="getSoinsOuSuivi()"
+																	id="suivi" name="care_or_follow_up" value="2">
+																<label for="suivi"> Suivi</label>
+															</div>
+															<div class="col-md-4">
+																<input type="radio" onchange="getSoinsOuSuivi()"
+																	id="ss_NR" name="care_or_follow_up" value="NR">
+																<label class="text-danger lab"
+																	for="ss_NR"><strong>NR</strong></label>
+															</div>
+														</div>
+													</fieldset>
+
+
+													<fieldset style="margin-top:10px;" class="fieldset_1 display_none"
+														id="label_promptness" for="">
+														<legend>promptness <span class="text-danger">*</span></legend>
+														<div class="">
+															<div class="row">
+																<div class="col-md-6">
+																	<input type="radio" onchange="" id="promptness_24"
+																		name="promptness" value="1"> <label
+																		for="promptness_24">
+																		<strong>≤</strong>24h</label><br>
+
+																	<input type="radio" onchange="" id="promptness_48"
+																		name="promptness" value="2"> <label
+																		for="promptness_48">
+																		<strong>≤</strong>48h</label><br>
+
+																	<input type="radio" onchange="" id="promptness_72"
+																		name="promptness" value="3"> <label
+																		for="promptness_72">
+																		<strong>≤</strong>72h</label>
+																</div>
+
+																<div class="col-md-6">
+																	<input type="radio" onchange=""
+																		id="promptness_sup_72" name="promptness"
+																		value="4"> <label for="promptness_sup_72">
+																		>72h</label><br>
+
+																	<b id="promptness_NA_b">
+																		<input type="radio" onchange=""
+																			id="promptness_NA" name="promptness"
+																			value="5"> <label for="promptness_NA">
+																			NA</label><br>
+																	</b>
+
+																	<input type="radio" onchange="" id="promptness_NR"
+																		name="promptness" value="NR"> <label
+																		class="text-danger lab" for="promptness_NR">
+																		<strong> NR</strong></label>
+																</div>
+															</div>
+														</div>
+													</fieldset>
+
+
+
+													<label class="display_none" id="comment_autres_motifs"
+														style="margin-top:10px; margin-bottom:-20px" for=""><span
+															class="text-danger">comment</span>
+														<textarea class="form-control" name="comment_autres_motifs"
+															rows="2" cols="25"></textarea>
+													</label>
+
+												</div>

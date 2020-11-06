@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load functions_extras %}
+
+<div id="header-panel" class=""></div>
+
+
+<div class="col-sm-8 col-md-8">
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+
+						{% include 'layouts/_messages.html' %}
+
+			<div id="data-panel" class="tabulation animate-box">
+				<div class="tab-content">
+					<div class="row">
+						<div class="col-md-12 col-xs-12 mt">
+							<div id="hh-panel" class="animate-box">
+								<div class="row">
+									<div class="hh-panel-d col-md-1 col-xs-1"></div>
+									<div class="hh-panel-d col-md-5 col-xs-5">
+										<a style="font-size: 55px; " href="#">
+											<p>A S C</p>
+										</a>
+									</div>
+
+
+									<div style="margin-top:35px;" class="hh-panel-d col-md-5 col-xs-5">
+										<a style="font-size: small; " href="{% url 'usps_create' %}">
+											<p>U S P</p>
+										</a>
+									</div>
+									<div class="hh-panel-d col-md-1 col-xs-1"></div>
+								</div>
+							</div>
+						</div>
+
+						<form id="form_1" data-parsley-validate class="" action="" method="post"
+							onload="document.getElementById('age').style.display = 'block'">
+							{% csrf_token %}
+
+							<div style="margin-bottom: -20px;" class="row">
+
+								<div class="col-md-4 col-xs-4">
+									<label id="district" style="margin-top:-15px" class="l1" for="">District<span class="text-danger">*</span>
+										<select id="district" onChange="ActiveAjax(this.id, this.value)" type="select" class="my-form-control" name="district" required="required">
+												<option class="option em" selected hidden value="{% if e_district_id != '' %}{{ e_district_id }}{% else %}{{ m_districts.id }}{% endif %}">{% if e_district_id != '' %}{{ e_district_v }}{% else %}{{ m_districts.district }}{% endif %}</option>
+												<option class="option" value=""></option>
+											{% for district in districts  %}
+												<option class="option" value="{{ district.id }}">{{ district.district }}</option>
+											{% endfor %}
+										</select>
+									</label>
+									<label class="l1" for="">Site <span class="text-danger">*</span>
+										<select id="site" onChange="ActiveAjax(this.id, this.value)" required="required" class="my-form-control" type="select" name="site">
+												<option class="option" selected hidden value="{% if e_site_id != '' %}{{ e_site_id }}{% else %}{{ m_sites.id }}{% endif %}">{% if e_site_id != '' %}{{ e_site_v }}{% else %}{{ m_sites.site }}{% endif %}</option>
+												<option class="option" value=""></option>
+											{% for site in sites  %}
+												<option class="option" value="{{ site.id }}">{{ site.site }}</option>
+											{% endfor %}
+										</select>
+									</label>
+									
+									<label id="year" class="l1" for="">Année<span class="text-danger">*</span>
+										<select id="year" onChange="ActiveAjax(this.id, this.value)" type="select" class="my-form-control" name="year" required="required">
+												<option class="option em" selected hidden value="{% if e_year_id != '' %}{{ e_year_id }}{% else %}{{ m_year.id }}{% endif %}">{% if e_year_id != '' %}{{ e_year_v }}{% else %}{{ m_year.year }}{% endif %}</option>
+												<option class="option" value=""></option>
+											{% for year in year  %}
+												<option class="option" value="{{ year.id }}">{{ year.year }}</option>
+											{% endfor %}
+										</select>
+									</label>
+									<label id="month" class="l1" for="">Mois<span class="text-danger">*</span>
+										<select id="month" onChange="ActiveAjax(this.id, this.value)" type="select" class="my-form-control" name="month" required="required">
+												<option class="option em" selected hidden value="{% if e_month_id != '' %}{{ e_month_id }}{% else %}{{ m_month.id }}{% endif %}">{% if e_month_id != '' %}{{ e_month_v }}{% else %}{{ m_month.month }}{% endif %}</option>
+												<option class="option" value=""></option>
+											{% for month in month %}
+												<option class="option" value="{{ month.id }}">{{ month.month }}</option>
+											{% endfor %}
+										</select>
+									</label>
+									
+								</div>
+
+
+								<div class="col-md-4 col-xs-4">
+									<fieldset style="width:auto;" id="all_motif_consultation"
+										class="col-md-12 col-xs-12">
+										<legend style="font-size:12px; width:auto">Motif de Consultation</legend>
+										{% for motifConsultation in motifConsultations %}
+											<label class="motif-label" id="label_{{ motifConsultation.motifs }}" for="id_{{ motifConsultation.motifs }}">
+												<input {% if e_consultation_reason != "" %} {{ e_consultation_reason|was_checked:motifConsultation.id }} {% endif %}
+												{% if m_consultation_reason != "" %} {{ m_consultation_reason|was_checked:motifConsultation.id }}{% endif %} type="checkbox" name="{{ motifConsultation.motifs }}" id="id_{{ motifConsultation.motifs }}" value="{{ motifConsultation.id }}">
+													
+												<abbr {% if motifConsultation.motifs == 'motif_nr' %} style="color:maroon; font-weight:bold;" {% endif %} class="motif">{{ motifConsultation.label }}</abbr>
+											</label>
+										{% endfor %}
+									</fieldset>
+								</div>
+
+								<div class="col-md-4 col-xs-4">
+									<fieldset class="fieldset_1" id="label_promptness" for="">
+										<legend>promptness <span class="text-danger">*</span></legend>
+										{{ form.promptness }}
+									</fieldset>
+								</div>
+							</div>
+
+							<div class="col-md-12 col-xs-12">
+								<div class="row">
+									<div class="col-md-7 col-xs-4"></div>
+									<div class="col-md-5 col-xs-8">
+										<style>
+											.btn-few-danger {
+												background-color: rgb(248, 138, 160)!important;
+												color:white;
+											}
+										</style>
+									
+										<a style="margin-left:10px; float:right" class="btn btn-few-danger pull-right"
+											onclick="return confirm('Voulez Vous vraiment annuler cette saisie?')" href="{% url 'usps_motifs_create' %}">Annuler</a>
+										<input class="btn {% if btn == True %}btn-warning{% else %}btn-success{% endif %} pull-right" type="submit" name="submit_usps_motifs_data"
+											value="{% if btn == True %}Modifier{% else %}Valider{% endif%} la Saisie">
+										
+									</div>
+								</div>
+							</div>
+						</form>
+
+						<br><br>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% include 'DataLayouts/AllDataResults.html' %}
+
+
+
+
+{% endblock content %}

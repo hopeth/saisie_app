@@ -1,0 +1,260 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load functions_extras %}
+
+<div id="header-panel" class=""></div>
+
+<div class="col-sm-8 col-md-8">
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+
+			{% include 'layouts/_messages.html' %}
+
+			<div id="data-panel" class="tabulation animate-box">
+				<div class="tab-content">
+					<div class="row">
+						<div class="col-md-12 col-xs-12 mt">
+							<div id="hh-panel" class="animate-box">
+								<div class="row">
+									<div class="hh-panel-d col-md-1 col-xs-1"></div>
+									<div class="hh-panel-d col-md-5 col-xs-5">
+										<a style="font-size: 55px; " href="#">
+											<p>U S P</p>
+										</a>
+									</div>
+
+									<div style="margin-top:35px;" class="hh-panel-d col-md-5 col-xs-5">
+										<a style="font-size: small; " href="{% url 'chws_create' %}">
+											<p>A S C</p>
+										</a>
+									</div>
+									<div class="hh-panel-d col-md-1 col-xs-1"></div>
+								</div>
+							</div>
+						</div>
+
+						<form id="form_1" data-parsley-validate class="" action="" method="post"
+							onload="document.getElementById('age').style.display = 'block'">
+							{% csrf_token %}
+							<div style="margin-bottom: -20px;" class="row">
+								<div class="col-md-4 col-xs-4">
+									<label style="margin-top:-15px" class="l1" for="">District<span
+											class="text-danger">*</span>
+										<select id="district" onChange="ActiveAjax(this.id, this.value)" type="select"
+											class="my-form-control" name="district" required="required">
+											<option class="option em" selected hidden
+												value="{% if e_district_id != '' %}{{ e_district_id }}{% else %}{{ m_districts.id }}{% endif %}">
+												{% if e_district_id != '' %}{{ e_district_v }}{% else %}{{ m_districts.district }}{% endif %}
+											</option>
+											<option class="option" value=""></option>
+											{% for district in districts  %}
+											<option class="option" value="{{ district.id }}">{{ district.district }}
+											</option>
+											{% endfor %}
+										</select>
+									</label>
+									<label class="l1" for="">Site <span class="text-danger">*</span>
+										<select id="site" onChange="ActiveAjax(this.id, this.value)" required="required"
+											class="my-form-control" type="select" name="site">
+											<option class="option" selected hidden
+												value="{% if e_site_id != '' %}{{ e_site_id }}{% else %}{{ m_sites.id }}{% endif %}">
+												{% if e_site_id != '' %}{{ e_site_v }}{% else %}{{ m_sites.site }}{% endif %}
+											</option>
+											<option class="option" value=""></option>
+											{% for site in sites  %}
+											<option class="option" value="{{ site.id }}">{{ site.site }}</option>
+											{% endfor %}
+										</select>
+									</label>
+
+									<label class="l1" for="">Date <span class="text-danger">*</span>
+										<input id="date" class="my-form-control" required="required" type="date"
+											name="date" value="{{ m_date }}">
+									</label>
+									<label class="l1" for="">Type de Visite<span class="text-danger">*</span>
+										<select type="select" required="required" class="my-form-control"
+											name="visit_type" id="visit_type" onchange="getNewUspTypeofvisit()">
+											<option class="option" selected hidden
+												value="{% if e_typeVisite_id != '' %}{{ e_typeVisite_id }}{% else %}{{ m_typeVisite.id }}{% endif %}">
+												{% if e_typeVisite_id != '' %}{{ e_typeVisite_v }}{% else %}{{ m_typeVisite.typeofvisit }}{% endif %}
+											</option>
+											<option class="option" value=""></option>
+											{% for typeofvisit in typeofvisits  %}
+											<option class="option" value="{{ typeofvisit.id }}">
+												{{ typeofvisit.typeofvisit }}</option>
+											{% endfor %}
+										</select>
+									</label>
+
+
+									<div class="row">
+										<div class="col-md-1 col-xs-1"></div>
+										<fieldset
+											class="fieldset_1 col-md-3 {% if not typeVisite or typeVisite and typeVisite != 1 %}display_none{% endif %}"
+											id="label_sex" for="">
+											<legend>Sexe <span class="text-danger">*</span></legend>
+											{{ form.sex }}
+										</fieldset>
+
+										<div class="col-md-1 col-xs-1"></div>
+
+										<fieldset
+											class="fieldset_1 col-md-3 {% if not typeVisite or typeVisite == 4 or typeVisite == 5 %}display_none{% endif %}"
+											id="label_ac_nc" for="">
+											<legend>NC/AC <span class="text-danger">*</span></legend>
+											{{ form.ac_nc }}
+										</fieldset>
+										<div class="col-md-1"></div>
+									</div>
+								</div>
+
+
+								<div class="col-md-4 col-xs-4">
+									<fieldset style="margin-top:-15px;" id="age"
+										class="fieldset_1 {% if not typeVisite or typeVisite == 4 or typeVisite == 5 %}display_none{% endif %}">
+										<legend>Âge Complète <span class="text-danger"> * </span>
+										</legend>
+
+										<label class="l1" for=""><span class="l2">year</span>
+											<input step="1" min="0" max="90" data-parsley-maxlength="2"
+												class="my-form-control-1" name="age_year" id="age_year" type="number"
+												value="{{ age_year }}" onclick=""></label>
+
+										<label class="l1" for=""><span class="l2">month </span>
+											<input step="1" min="0" max="100" data-parsley-maxlength="2"
+												class="my-form-control-11" name="age_month" id="age_month" type="number"
+												value="{{ age_month }}"></label>
+
+										<label class="l1" for=""><span class="l2">Semaine </span>
+											<input step="1" min="0" max="100" data-parsley-maxlength="2"
+												class="my-form-control-11" name="age_semaine" id="age_semaine"
+												type="number" value="{{ age_semaine }}"></label>
+
+										<label class="l1" for=""><span class="l2">Jour </span>
+											<input step="1" min="0" max="100" data-parsley-maxlength="2"
+												class="my-form-control-11" name="age_jour" id="age_jour" type="number"
+												value="{{ age_jour }}"></label>
+
+									</fieldset><br>
+
+
+									<fieldset style="width:auto;" id="all_motif_consultation"
+										class="col-md-12 col-xs-12 {% if not typeVisite or typeVisite == 4 or typeVisite == 5 %}display_none{% endif %}">
+										<legend style="font-size:12px; width:auto">Motif de Consultation</legend>
+										{% for motifConsultation in motifConsultations %}
+										<label class="motif-label" id="label_{{ motifConsultation.motifs }}"
+											for="id_{{ motifConsultation.motifs }}">
+											<input {% if e_consultation_reason != "" %}
+												{{ e_consultation_reason|was_checked:motifConsultation.id }} {% endif %}
+												{% if m_consultation_reason != "" %}
+												{{ m_consultation_reason|was_checked:motifConsultation.id }}{% endif %}
+												type="checkbox" name="{{ motifConsultation.motifs }}"
+												id="id_{{ motifConsultation.motifs }}"
+												value="{{ motifConsultation.id }}">
+
+											<abbr {% if motifConsultation.motifs == 'motif_nr' %}
+												style="color:maroon; font-weight:bold;" {% endif %}
+												class="motif">{{ motifConsultation.label }}</abbr>
+										</label>
+										{% endfor %}
+									</fieldset>
+								</div>
+
+								<div class="col-md-4 col-xs-4">
+									<label style="margin-top:-15px"
+										class="l1 {% if not typeVisite or typeVisite != 2 %}display_none{% endif %}"
+										id="label_pregnant_or_postpartum" style="margin-bottom:10px"
+										for="pregnant_or_postpartum">
+										Enceinte ou post-Partum
+										{{ form.pregnant_or_postpartum }}
+									</label>
+
+									<fieldset
+										class="fieldset_1 {% if typeVisite == 1 or typeVisite == 2 or typeVisite == 3 %}{% else %}display_none{% endif %}"
+										id="label_reference">
+										<legend class="l1">Patient Référé <span class="text-danger">*</span></legend>
+										{{ form.reference }}
+									</fieldset>
+
+									<fieldset
+										class="fieldset_1 {% if not typeVisite or typeVisite and typeVisite != 1 %}display_none{% endif %}"
+										id="label_care_or_follow_up">
+										<legend class="l1">Soins ou Suivi <span class="text-danger">*</span></legend>
+										{{ form.care_or_follow_up }}
+									</fieldset>
+
+									<fieldset id="les_autres_motifs"
+										class="fieldset_1 {% if not typeVisite or typeVisite and typeVisite != 2 %}display_none{% endif %}">
+										<legend style="font-size:12px; width:auto">Autres Eléments</legend>
+										<label class="" id="label_syndromes_infectieux" for="syndromes_infectieux">
+											{{ form.syndromes_infectieux }}<abbr class="motif">Syndromes Infectieux</abbr>
+										</label>
+
+										<label class="motif-label" id="label_ist" for="ist">
+											{{ form.ist }}<abbr class="motif">IST</abbr>
+										</label>
+									</fieldset>
+
+									<label id="label_promptness" style="margin-top:5px" class="l1 {% if not typeVisite or typeVisite and typeVisite != 1 %}display_none{% endif %}" for="promptness">
+											Promptitude<span class="text-danger">*</span>
+										{{ form.promptness }}
+									</label>
+
+									<label class="{% if not typeVisite or not autre_motif %}display_none{% endif %}"
+										id="comment_autres_motifs" style="margin-top:10px; margin-bottom:-20px" for="">
+										<span class="text-danger">comment</span>
+										{{ form.comment }}
+									</label>
+								</div>
+							</div>
+
+							<div class="col-md-12 col-xs-12">
+								<div class="row">
+									<div class="col-md-7 col-xs-4"></div>
+									<div class="col-md-5 col-xs-8">
+										<style>
+											.btn-few-danger {
+												background-color: rgb(248, 138, 160) !important;
+												color: white;
+											}
+										</style>
+
+										<a style="margin-left:10px; float:right" class="btn btn-few-danger pull-right"
+											onclick="return confirm('Voulez Vous vraiment annuler cette saisie?')"
+											href="{% url 'usps_create' %}">Annuler</a>
+										<input
+											class="btn {% if btn == True %}btn-warning{% else %}btn-success{% endif %} pull-right"
+											type="submit" name="submit_usp_data"
+											value="{% if btn == True %}Modifier{% else %}Valider{% endif%} la Saisie">
+
+									</div>
+								</div>
+							</div>
+						</form>
+
+						<br><br>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% include 'DataLayouts/AllDataResults.html' %}
+
+
+
+{% block javascript %}
+
+	<script type="text/javascript">
+		$(window).on('load', function() {
+			getNewUspTypeofvisitUpdate();
+		})
+	</script>
+
+{% endblock javascript %}
+
+
+{% endblock content %}

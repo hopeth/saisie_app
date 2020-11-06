@@ -1,0 +1,346 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr" class="no-js'>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta property="title" content="" />
+	<link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/superfish.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'css/mycolmd.css' %}">
+	<link rel="stylesheet" href="{% static 'css/mdb.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/mdb.lite.min.css' %}">
+	<link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+
+	
+
+<style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+  </style>
+
+
+
+
+
+  <style>
+
+@font-face {
+	font-family: 'gothic';
+	src: url('.assets/fonts/gothics');
+}
+
+
+#flash-template {
+	font-family: "Times Roman","Century Gothic",sans-serif;
+	position: fixed;
+	bottom: 5%;
+	right: -50%;
+	font-weight: bold;
+	width: auto;
+}
+
+
+@media only screen and (max-width: 798px) {
+	#flash-template {
+		font-family: Arial, sans-serif;
+		font-weight: bold;
+		position: fixed;
+		top: 10%;
+		right: 0%;
+	}
+}
+  </style>
+
+	<title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+
+	<div id="app-body">
+
+	{% include 'layouts/_nav.html' %}
+
+		<div style="overflow:auto" class="container">
+			<div id="body-content" class="row">
+				{% block content %}{% endblock content %}
+			</div>
+		</div>
+
+		<div style="padding:2px 40px" class="">
+			<div id="" class="row">
+				{% block other_content %}{% endblock other_content %}
+			</div>
+		</div>
+		
+	{% include 'layouts/_footer.html' %}
+	
+	
+	</div>
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	<script src="{% static 'js/sticky.js' %}"></script>
+	<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+	<script src="{% static 'js/superfish.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'js/mdb.min.js' %}"></script>
+	<script src="{% static 'js/sweetalert2@8' %}"></script>
+	
+	<script src="{% static 'js/chws_style.js' %}"></script>
+	<script src="{% static 'js/usps_style.js' %}"></script>
+
+		{% block javascript %}{% endblock javascript %}
+
+		
+	<!-- Initializations -->
+
+	<script type="text/javascript">
+		new WOW().init();
+	</script>
+	<!-- EndInitializations -->
+
+	{% if btn == True %}
+		<script>
+			$(window).on('load', function() {
+				//options = '<option value=""></option>';
+				//$("#district").html(options);
+				//$("#site").html(options);
+				//$("#asc").html(options);
+				//$("#visit_type").html(options);
+				//ActiveAjax('district', 3);
+				//ActiveAjax('site', 2);
+			})
+		</script>
+	{% endif%}
+
+	
+	
+	{% if messages %}
+	{% for message in messages %}
+	{% if message.tags != 'error' %}
+	<script>
+		flashy("{{ message }}", "{{ message.tags }}");
+	</script>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+
+	<script>
+		function getCookie(name) {
+				let cookieValue = null;
+				if (document.cookie && document.cookie !== '') {
+					const cookies = document.cookie.split(';');
+					for (let i = 0; i < cookies.length; i++) {
+						const cookie = cookies[i].trim();
+						// Does this cookie string begin with the name we want?
+						if (cookie.substring(0, name.length + 1) === (name + '=')) {
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+						}
+					}
+				}
+				return cookieValue;
+			}
+			//const csrftoken = getCookie('csrftoken');
+	</script>
+
+
+	<!-- AJAX REQUETE -->
+	<script>
+		$('#districtttttttt').on('change', function () {
+				var url = '{% url "ajax_site" %}';
+				var val = $(this).val();
+		// script to search sites
+				//const csrftoken = jQuery([name=csrfmiddlewaretoken]).val();
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: {
+						id_district: val,
+						csrfmiddlewaretoken: getCookie('csrftoken'),
+					},
+					success: function (response) {
+						console.log(response)
+						if(response["valid"]){
+							options = [];
+							options += '<option value=""></option>';
+							for (item in response["data"]){
+								let key = Object.keys(response['data'][item])[0]
+								let value = Object.values(response['data'][item])[0]
+								console.log()
+								options += '<option value="' + key +'">' + value + '</option>';
+							}
+							$("#site").html(options);
+						}
+					}
+				});
+				
+			}) 
+			//end
+	
+			//script to search chws
+			function ActiveAjax(id, val) {
+				if(id == 'district'){
+					url = "{% url 'ajax_site' %}";
+					path = '#site';
+				} else if (id == 'site') {
+					url = "{% url 'ajax_chws' %}";
+					path = '#asc';
+				} else if (id == 'id_pf_administered_yes_or_no_0' || id == 'id_pf_administered_yes_or_no_1') {
+					url = "{% url 'ajax_pf' %}";
+					path = '#pf_administered';
+				}else{
+					url = "";
+					path = ""
+				}
+
+				if(url != "" && path != ""){
+					$.ajax({
+						type: "POST",
+						url: url,
+						data: {
+							csrfmiddlewaretoken: getCookie('csrftoken'),
+							data_id: val,
+						},
+						success: function (response) {
+							console.log(response)
+							options = [];
+							options += '<option value=""></option>';
+							if (response["valid"]) {
+								for (item in response["data"]) {
+									let key = Object.keys(response['data'][item])[0]
+									let value = Object.values(response['data'][item])[0]
+									console.log()
+									options += '<option value="' + key + '">' + value + '</option>';
+								}
+							}
+							$(path).html(options);
+						}
+					});
+				}
+			} 
+			
+			
+			//function selectSite(asc) {
+			//	$("#search-box").val(asc);
+			//	$("#suggesstion-box").hide();
+			//}
+//end
+	</script>
+
+
+	<script>
+			$('#ShowCheckBoxToDeleteData').on('click', function (e) {
+				e.preventDefault();
+				var f = document.querySelectorAll(".data");
+				var i, l = f.length;
+				document.getElementById('ShowCheckBoxToDeleteData').style.display = 'none'
+				for (i = 0; i < l; i++) {
+					f[i].style.display = 'block'
+				}
+
+			})
+		
+			
+			$('#delete_selection').on('click', function (e) {
+				if (!document.getElementById('confirm_checked').checked){
+					e.preventDefault();
+					Swal.fire({
+						title: "Vous N'avez Choisis Aucune Donnée à Supprimer, ",
+						text: 'Vous Devez Absolument Choisir Les Données à Supprimer En Cochant Les Cases Concernées!!!',
+						type: 'error',
+					})
+				}else{
+					$(this).unbind(e);
+					Swal.fire({
+						title: 'Action Effectuer avec succès',
+						text: 'Les Elements ont bien été supprimer',
+						type: 'success',
+					})
+				}
+			})
+
+		function checkAllDataToBeDelete(id) {
+				var f = document.querySelectorAll(".data");
+				var i, l = f.length;
+				if (document.getElementById(id).checked) {
+					document.getElementById('confirm_checked').checked = 'checked';
+					for (i = 0; i < l; i++) {
+						f[i].checked = 'checked'
+					}
+				} else {
+					document.getElementById('confirm_checked').checked = '';
+					for (i = 0; i < l; i++) {
+						f[i].checked = ''
+					}
+				}
+			}
+		
+		function getCheckedOrNot(id){
+			var f = document.querySelectorAll(".data");
+			var i, l = f.length;
+			var p = ''
+
+			for (i = 0; i < l; i++) {
+				if (f[i].checked){
+					if(f[i].id != 'delete_selection' && f[i].id != 'delete_data'){
+						p+=i
+					}
+				}
+			}
+			if (document.getElementById(id).checked) {
+				document.getElementById('confirm_checked').checked = 'checked';
+				if(p.length >= (f.length - 2)){
+					document.getElementById('delete_data').checked = 'checked';
+				} 
+			} else {
+				document.getElementById('delete_data').checked = '';
+				if (p.length == 0) {
+					document.getElementById('confirm_checked').checked = '';
+				}
+			}
+		}
+	
+	</script>
+</body>
+
+</html>

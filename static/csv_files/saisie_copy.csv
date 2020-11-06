@@ -1,0 +1,57 @@
+
+
+id = id
+
+date = date_action
+
+sex = sexe
+
+ac_nc = ac_nc
+
+year_old = age_en_annee
+
+consultation_reason = [diarrhee(1), malnutrition(2), paludisme(3), pneumonie(4), fievre_simple(5), toux_ou_rhume(6), signe_de_danger(7), autres_motifs(8), motif_nr(9)]
+
+comment = commentaire_autres_motifs
+
+pregnant_or_postpartum = id_enceinte_ou_postpartum
+
+pf_administered_yes_or_no = pf_administree_oui_non_nr
+
+counciling = counciling
+
+reference = refere_par_un_asc / refere_pour_pf
+
+care_or_follow_up = id_soins_ou_suivi
+
+promptness = id_promptitude
+
+pregnancy_test = test_de_grossesse
+
+ptme = ptme
+
+created_at = created_at
+
+created_only_date = created_at_date_only
+
+updated_at = date_of_modif
+
+number_of_modification = number_of_modif
+
+chws_code_id = id_code_asc
+
+district_id = id_district
+
+month_id = id_mois
+
+pf_administered_id = id_type_de_pf
+
+site_id = id_site
+
+user_who_create_id = user_id_who_create
+
+user_who_update_id = user_id_who_modify
+
+visit_type_id = id_type_de_visite
+
+year_id = id_annee

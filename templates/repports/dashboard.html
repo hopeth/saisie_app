@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% load repports_extras %}
+
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block other_content %}
+
+    <div class="">
+        <table style="background:#ddd;" class="table table-striped">
+            <thead class="">
+                <tr>
+                    <th colspan="3">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 form-group">
+                                <b class="form-control">TABLEAU DE BORD SBC SANTE INTEGREE</b>
+                            </div>
+                        </div>
+                    </th>
+
+                    <form class="" action="#" method="post">
+                        <div class="row">
+                            <th colspan="9">
+                                <div class="col-md-3 col-xs-3 form-group">
+                                    <select class="form-control" name="year">
+                                        <option selected hidden value=""></option>
+                                        <option value="">2001</option>;
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3 col-xs-3 form-group">
+                                    <select class="form-control" name="district">
+                                        <option selected hidden value=""></option>
+                                        <option value="TOUT">TOUT</option>
+                                        <option class="option" value=""></option>;
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 col-xs-4 form-group">
+                                    <select class="form-control" name="site">
+                                        <option selected hidden value="">
+                                        </option>
+                                        <option value="">TOUT</option>
+                                        <option value=""></option>;
+                                        <option value=""></option>;
+                                    </select>
+                                </div>
+
+                                <div class="col-md-2  col-xs-2 form-group">
+                                    <input class="form-control" type="submit" name="dashboard_filter" value="OK">
+                                </div>
+                            </th>
+                        </div>
+                    </form>
+                
+                    <th></th>
+
+                    <th colspan="2">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 form-group">
+                                <a class="form-control" href="#"><i class="fa fa-download">Télécharger</i></a>
+                            </div>
+                        </div>
+                    </th>
+
+                    <style media="screen">
+                        td {border: 1px dashed #aaa !important;}
+                        td,th{font-size: 14px!important; color:black;}
+                    </style>
+                </tr>
+
+                <tr>
+                    <th class="tabu_0 tabb">N°</th>
+                    <th class="tabbb">LISTE DES INDICATEURS SBC</th>
+                    <th class="tabb">JUIL</th>
+                    <th class="tabb">AOÛT</th>
+                    <th class="tabb">SEPT</th>
+                    <th class="tabb">OCTO</th>
+                    <th class="tabb">NOVE</th>
+                    <th class="tabb">DECE</th>
+                    <th class="tabb">JANV</th>
+                    <th class="tabb">FEVR</th>
+                    <th class="tabb">MARS</th>
+                    <th class="tabb">AVRI</th>
+                    <th class="tabb">MAI_</th>
+                    <th class="tabb">JUIN</th>
+                    <th class="tabb">SYNTH</th>
+                </tr>
+            </thead>
+
+            <tbody class="container">
+                {% for data in datas %}
+
+                {% with 4 as year %}
+                {% with 1 as district %}
+                {% with 1 as site %}
+                {% with year|to_str_c:7|to_str_c:district|to_str_c:site as Juil %}
+                {% with year|to_str_c:8|to_str_c:district|to_str_c:site as Aou %}
+                {% with year|to_str_c:9|to_str_c:district|to_str_c:site as Sept %}
+                {% with year|to_str_c:10|to_str_c:district|to_str_c:site as Oct %}
+                {% with year|to_str_c:11|to_str_c:district|to_str_c:site as Nov %}
+                {% with year|to_str_c:12|to_str_c:district|to_str_c:site as Dec %}
+                {% with year|to_str_c:1|to_str_c:district|to_str_c:site as Jan %}
+                {% with year|to_str_c:2|to_str_c:district|to_str_c:site as Fev %}
+                {% with year|to_str_c:3|to_str_c:district|to_str_c:site as Mar %}
+                {% with year|to_str_c:4|to_str_c:district|to_str_c:site as Avr %}
+                {% with year|to_str_c:5|to_str_c:district|to_str_c:site as Mai %}
+                {% with year|to_str_c:6|to_str_c:district|to_str_c:site as Juin %}
+                {% with year|to_str_c:'All'|to_str_c:district|to_str_c:site as All %}
+                
+                    <tr>
+                        <td class="tabu_0">{{ data.id }}</td>
+                        <td class="tabu_1">{{ data.indicators_list }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Juil }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Aou }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Sept }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Oct }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Nov }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Dec }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Jan }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Fev }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Mar }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Avr }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Mai }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:Juin }}</td>
+                        <td class="tabu_2">{{ data.id|dash_data:All }}</td>
+                    </tr>
+
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock other_content %}

@@ -1,0 +1,80 @@
+import os
+import uuid
+from django.db import models
+from django.conf import settings
+from django.utils import timezone
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
+
+
+def images_path():
+	return os.path.join(BASE_DIR, 'images')
+
+class AllData(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    titre = models.CharField(null=True, max_length=100, blank=True)
+    auteur = models.CharField(null=True, max_length=42, blank=True)
+    contenu = models.TextField(null=True)
+    date = models.DateField(null=True, auto_now=False,
+                            auto_now_add=False)
+    email = models.EmailField(null=True, max_length=254)
+    upload = models.FileField(null=True, upload_to=user_directory_path)
+    file = models.FilePathField(null=True, path=images_path)
+    data = models.FloatField(null=True, max_length=100)
+    imyear_old = models.ImageField(null=True, upload_to=None, height_field=None,
+                              width_field=None, max_length=100)
+    integer = models.IntegerField(null=True, default=0)
+   # upload = models.FileField(upload_to='uploads/%Y/%m/%d/', max_length=100)
+    created_at = models.DateTimeField(null=True, default=timezone.now,
+                                      verbose_name="Date de parution")
+    FRESHMAN = 'FR'
+    SOPHOMORE = 'SO'
+    JUNIOR = 'JR'
+    SENIOR = 'SR'
+    GRADUATE = 'GR'
+    YEAR_IN_SCHOOL_CHOICES = [
+        (FRESHMAN, 'Freshman'),
+        (SOPHOMORE, 'Sophomore'),
+        (JUNIOR, 'Junior'),
+        (SENIOR, 'Senior'),
+        (GRADUATE, 'Graduate'),
+    ]
+    year_in_school = models.CharField(
+        max_length=2,
+        choices=YEAR_IN_SCHOOL_CHOICES,
+        default=FRESHMAN,
+        null=True,
+    )
+
+    def is_upperclass(self):
+        return self.year_in_school in {self.JUNIOR, self.SENIOR}
+
+    class Meta:
+        verbose_name = "article"
+        ordering = ['date']
+
+    def __str__(self):
+        """ 
+        Cette méthode que nous définirons dans tous les modèles
+        nous permettra de reconnaître facilement les différents objets que 
+        nous traiterons plus tard dans l'administration
+        """
+        return self.titre
+
+
+class Moteur(models.Model):
+    nom = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.nom
+
+
+class Voiture(models.Model):
+    nom = models.CharField(max_length=25)
+    moteur = models.OneToOneField(Moteur, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nom

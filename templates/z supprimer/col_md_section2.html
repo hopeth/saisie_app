@@ -1,0 +1,103 @@
+
+												<div class="col-md-4 col-xs-4">
+													<fieldset style="margin-top:-15px;" id="age"
+														class="fieldset_1 display_none">
+														<legend>Âge Complète <span class="text-danger"> * </span>
+														</legend>
+
+														<label class="l1" for=""><span class="l2">year</span>
+															<input step="1" min="0" max="90" data-parsley-maxlength="2"
+																class="my-form-control-1" name="age_year"
+																id="age_year" type="number" value=""
+																onclick=""></label>
+
+														<label class="l1" for=""><span class="l2">month </span>
+															<input step="1" min="0" max="100" data-parsley-maxlength="2"
+																class="my-form-control-11" name="age_month" id="age_month"
+																type="number" value=""></label>
+
+														<label class="l1" for=""><span class="l2">Semaine </span>
+															<input step="1" min="0" max="100" data-parsley-maxlength="2"
+																class="my-form-control-11" name="age_semaine"
+																id="age_semaine" type="number" value=""></label>
+
+														<label class="l1" for=""><span class="l2">Jour </span>
+															<input step="1" min="0" max="100" data-parsley-maxlength="2"
+																class="my-form-control-11" name="age_jour" id="age_jour"
+																type="number" value=""></label>
+
+													</fieldset><br>
+
+													<label id="label_save_while_value" class="l1 display_none"
+														for="save_while_value">Nombre
+														d'enrégistrement
+														Souhaité<span class="text-danger"> * </span>
+
+														<input class="my-form-control-0" name="save_while_value"
+															id="save_while_value" type="number" value="">
+													</label>
+
+
+													<fieldset style="width:auto;" id="all_motif_consultation" class="display_none col-md-12 col-xs-12">
+														<legend style="font-size:12px; width:auto">Motif de Consultation</legend>
+
+														<label class="motif-label" id="label_diarrhee" for="diarrhee">
+															<input id="diarrhee" type="checkbox" name="diarrhee"
+																value="1"><abbr class="motif">Diarrhée</abbr>
+														</label>
+
+
+														<label class="motif-label" id="label_malnutrition"
+															for="malnutrition">
+															<input id="malnutrition" type="checkbox" name="malnutrition"
+																value="1">
+															<abbr class="motif">Malnutrition</abbr>
+														</label>
+
+														<label class="motif-label" id="label_paludisme" for="paludisme">
+															<input id="paludisme" type="checkbox" name="paludisme"
+																value="1"><abbr class="motif">Paludisme</abbr>
+														</label>
+
+														<label class="motif-label" id="label_pneumonie" for="pneumonie">
+															<input id="pneumonie" type="checkbox" name="pneumonie"
+																value="1"><abbr class="motif">Pneumonie</abbr>
+														</label>
+
+														<label class="motif-label" id="label_fievre_simple"
+															for="fievre_simple">
+															<input id="fievre_simple" type="checkbox"
+																name="fievre_simple" value="1"><abbr
+																class="motif">Fièvre simple</abbr>
+														</label>
+
+														<label class="motif-label" id="label_toux_ou_rhume"
+															for="toux_ou_rhume">
+															<input id="toux_ou_rhume" type="checkbox"
+																name="toux_ou_rhume" value="1"><abbr class="motif">Toux
+																ou Rhume</abbr>
+														</label>
+
+														<label class="motif-label" id="label_signe_de_danger"
+															for="signe_de_danger">
+															<input id="signe_de_danger" type="checkbox"
+																name="signe_de_danger" value="1"><abbr
+																class="motif">Signe
+																de danger</abbr>
+														</label>
+
+														<label class="motif-label" id="label_autre" for="autre">
+															<input id="autre" onchange="getAutresMotifs()"
+																type="checkbox" name="autres_motifs" value="1"><abbr
+																class="motif">Autre
+																Motif</abbr>
+														</label>
+
+														<label class="motif-label" id="label_motif_nr" for="motif_nr">
+															<input id="motif_nr" type="checkbox" name="motif_nr"
+																value="1"><abbr style="color:maroon; font-weight:bold;"
+																class="motif">Motif
+																NR</abbr>
+														</label>
+													</fieldset>
+												</div>

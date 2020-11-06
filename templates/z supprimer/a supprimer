@@ -1,0 +1,35 @@
+
+									<fieldset style="width:auto;" id="all_motif_consultation"
+										class="col-md-12 col-xs-12 {% if not typeVisite or typeVisite == 4 or typeVisite == 5 %}display_none{% endif %}">
+										<legend style="font-size:12px; width:auto">Motif de Consultation</legend>
+										<label class="motif-label" id="Diarrhee" for="id_diarrhee">
+											{{ form.diarrhee }}<abbr class="motif">Diarrhée</abbr>
+										</label>
+										<label class="motif-label" id="Malnutrition" for="id_malnutrition">
+											{{ form.malnutrition }}<abbr class="motif">Malnutrition</abbr>
+										</label>
+										<label class="motif-label" id="Paludisme" for="id_paludisme">
+											{{ form.paludisme }}<abbr class="motif">Paludisme</abbr>
+										</label>
+										<label class="motif-label" id="Pneumonie" for="id_pneumonie">
+											{{ form.pneumonie }}<abbr class="motif">Pneumonie</abbr>
+										</label>
+										<label class="motif-label" id="FievreSimple" for="id_fievre_simple">
+											{{ form.fievre_simple }}<abbr class="motif">Fièvre simple</abbr>
+										</label>
+										<label class="motif-label" id="TouxOuRhume" for="id_toux_ou_rhume">
+											{{ form.toux_ou_rhume }}<abbr class="motif">Toux ou Rhume</abbr>
+										</label>
+										<label class="motif-label" id="SigneDeDanger" for="id_signe_de_danger">
+											{{ form.signe_de_danger }}<abbr class="motif">Signe de danger</abbr>
+										</label>
+										<label class="motif-label" id="Autre" for="id_autre_motif">
+											{{ form.autre_motif }}<abbr class="motif">Autre Motif</abbr>
+										</label>
+										<label class="motif-label" id="MotifNr" for="id_motif_nr">
+											{{ form.motif_nr }}<abbr style="color:maroon; font-weight:bold;"
+												class="motif">Motif NR</abbr>
+										</label>
+									</fieldset>
+								
+									<br><br>

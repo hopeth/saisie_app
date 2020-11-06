@@ -1,0 +1,133 @@
+
+{% load functions_extras %}
+<div id="results-panel" class="animate-box col-sm-4 col-md-4">
+					<div id="results-header" style="" class="row">
+						<form action="" method="POST">
+							{% csrf_token %}
+							<div class="col-md-5 col-xs-5 mt alternate">
+								<div class="input-field">
+									<label for="date-form">Date Début:</label>
+									<input style="font-size:medium;" type="date" class="form-control" id="date-from" name="date_from" value="{{ date_from }}">
+								</div>
+							</div>
+							<div class="col-md-5 col-xs-5 mt alternate">
+								<div class="input-field">
+									<label for="date-to">Date Fin:</label>
+									<input style="font-size:medium;" type="date" class="form-control" id="date-to" name="date_to" value="{{ date_to }}">
+								</div>
+							</div>
+							<div class="col-md-2 col-xs-2 mt alternate">
+								<div class="input-field">
+									<label style="margin-top: 22px; padding:0px;" for="">
+										<input type="submit" name="find_by_date" class="form-control btn btn-primary" value="Valider"></label>
+								</div>
+							</div>
+						</form>
+
+					</div>
+
+					<form style="display: inline-block;" action="" method="post">
+						{% csrf_token %}
+
+						{% if not btn and datas.count > 0 %}
+							<div class="col-md-12">
+							
+							#(<strong id="data_count"> {{ datas.count }} </strong>)
+							
+								{#% if datas.count > 1 %#}
+								<a href="{% if page == 'chws' %}{% url 'chws_deleteall' 'deleteall' %}{% elif page == 'usps' %}{% url 'usps_deleteall' 'deleteall' %}{% elif page == 'usps_motif' %}{% endif %}" style="padding: 5px; font-size:6px; display:none" class="btn btn-danger" onclick="return confirm('Êtes vous sûr de vouloir supprimer Toutes les Enrégistrements?')">Tout Supprimer</a>
+								{#% endif %#}	
+								<input class="data display_none btn btn-danger" style="padding: 1px; font-size:12px;" type="submit" id="delete_selection" name="delete_selection" value="Supprimer la Selection">
+								
+								<a id="ShowCheckBoxToDeleteData" class="btn btn-default" style="padding: 1px; font-size:12px; color: red!important;font-weight:bold;" href="">Sélection Multiples</a>
+								<input class="data display_none" onclick="checkAllDataToBeDelete(this.id)"  style="float: right;" type="checkbox" name="delete_data" id="delete_data" value="delete_all_data">
+								
+								<input class="display_none" style="float: left;" type="checkbox" id="confirm_checked">
+								
+							</div>
+						{% endif %}
+						
+							<div id="results-body" class="row">
+								{% for data in datas %}
+									<article>
+										<div class="col-md-12">
+											<div id="d{{data.id}}" class="animate-box">
+												<blockquote 
+													{% if data.created_at|time_diff <= 5 or data.updated_at|time_diff <= 5 %} 
+														style="background:aqua;" 
+													{% elif btn == True %} 
+														style="background:rgb(14, 46, 2); color:white;" 
+													{% endif %} >
+
+													<input onchange="getCheckedOrNot(this.id)" class="data display_none" style="float: right;" type="checkbox" name="{{data.id}}" id="{{data.id}}" value="{{data.id}}">
+
+													<small>
+														<strong>
+															{% if data.date %}&ldquo;{{data.date|date:"d/m/Y"}}&rdquo;{% endif %}
+															{% if data.district %}{{data.district}}{% endif %}
+															{% if data.site %}{{data.site}}{% endif %}
+															{% if data.chws_code %}{{data.chws_code}}{% endif %}
+															{% if data.month %}{{data.month}}{% endif %}
+															{% if data.year %}{{data.year}}{% endif %}
+														</strong>
+														{% if data.visit_type %}{{data.visit_type}}{% endif %}
+														{% if data.sex %}{{data.sex}}{% endif %}
+														{% if data.ac_nc %}{{data.ac_nc}}{% endif %}
+														{% if data.year_old %}&ldquo;{{data.year_old|to_age|safe}}&rdquo;{% endif %}
+
+														{% if page == 'usps_motif' %}
+															{% if data.consultation_reason %}{{ data.consultation_reason|to_motif_label }}{% endif %}
+														{% else %}
+															{% if data.consultation_reason %}{{ data.consultation_reason|to_motif_label:data.comment }}{% endif %}
+														{% endif %}
+
+														{#% if data.diarrhee %}Diarrhée{% endif %#}
+														{#% if data.malnutrition %}Malnutrition{% endif %#}
+														{#% if data.paludisme %}Paludisme{% endif %#}
+														{#% if data.pneumonie%}Pneumonie{% endif %#}
+														{#% if data.fievre_simple %}FièvreSimple{% endif %#}
+														{#% if data.toux_ou_rhume %}TouxOuRhume{% endif %#}
+														{#% if data.signe_de_danger %}SigneDeDanger{% endif %#}
+														{#% if data.autre_motif and data.comment != '' %}{{ data.comment }}{% endif %#}
+														{#% if data.motif_nr %}motif_nr{% endif %#}
+														{#% if data.pf_administered_yes_or_no %}pf_administered_yes_or_no{% endif %#}
+
+														{% if data.pregnant_or_postpartum %}
+														{% if data.pregnant_or_postpartum == '1' %}Enceinte{% elif data.pregnant_or_postpartum == '2' %}PostPartum{% elif data.pregnant_or_postpartum == '3' %}Partenaire{% endif %}
+														{% endif %}
+														{% if data.counciling and data.counciling == '1' %}Counciling{% endif %}
+														{% if data.reference and data.reference == '1' %}Référé{% endif %}
+
+														{% if data.care_or_follow_up %}
+														{% if data.care_or_follow_up == '1' %}Soins{% elif data.care_or_follow_up == '2' %}Suivi{% endif %}
+														{% endif %}
+														{% if data.promptness %}
+															{% if data.promptness == '1' %}≤ 24h{% elif data.promptness == '2' %}≤ 48h{% elif data.promptness == '3' %}≤ 72h
+															{% elif data.promptness == '4' %}> 72h{% elif data.promptness == '5' %}_NA_{% endif %}
+														{% endif %}
+														{% if data.pregnancy_test %}pregnancy_test{% endif %}
+														{% if data.ptme %}ptme{% endif %}
+														{% if data.syndromes_infectieux %}Syndromes_Infectieux{% endif %}
+														{% if data.ist %}IST{% endif %}
+
+														{% if data.pf_administered.pf %}
+															{{ data.pf_administered }}
+														{% endif %}
+
+														{% if data.id != '' and data.id != 0 %}
+															<br>
+															{% if btn != True %}
+																<a style="padding: 5px;" class="update btn btn-warning" href="{% if page == 'chws' %}{% url 'chws_find_or_update_or_delete' data.id 'update' %}{% elif page == 'usps' %}{% url 'usps_find_or_update_or_delete' data.id 'update' %}{% elif page == 'usps_motif' %}{% url 'usps_motifs_find_or_update_or_delete' data.id 'update' %}{% endif %}">Modifier</a>
+															{% endif %}
+															<!-- <a style="padding: 5px;" href="{% if page == 'chws' %}{% url 'chws_find_or_update_or_delete' data.id 'delete' %}{% elif page == 'usps' %}{% url 'usps_find_or_update_or_delete' data.id 'delete' %}{% endif %}" class="delete btn btn-danger">Supprimer</a> -->
+														{% endif %}
+													</small>
+												</blockquote>
+											</div>
+										</div>
+									</article>
+									
+								{% endfor %}
+							</div>
+					</form>
+				</div>
